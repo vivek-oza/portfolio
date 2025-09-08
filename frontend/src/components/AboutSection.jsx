@@ -36,7 +36,7 @@ export default function AboutSection() {
                         </a>
                     </div>
                 </div>
-                <div className='flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700'>
+                <div className='flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-800'>
                     <img className='max-w-full w-[1200px]' src="/logo.png" alt="" />
                 </div>
             </div>
