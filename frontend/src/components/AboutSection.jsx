@@ -4,7 +4,7 @@ import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr'
 
 export default function AboutSection() {
     return (
-        <div className='flex flex-col space-y-4 border-y border-y-neutral-200 dark:border-y-neutral-800 text-start px-12'>
+        <div className='flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start px-12'>
             <div className='flex flex-row flex-wrap md:flex-nowrap   space-x-8'>
                 <div className='py-12 flex flex-col space-y-8'>
                     <CustomHeading className={"text-xl font-medium tracking-wide"} heading_text={'Something about me'} />
@@ -36,7 +36,7 @@ export default function AboutSection() {
                         </a>
                     </div>
                 </div>
-                <div className='flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-800'>
+                <div className='flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700'>
                     <img className='max-w-full w-[1200px]' src="/logo.png" alt="" />
                 </div>
             </div>

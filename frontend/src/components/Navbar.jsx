@@ -63,8 +63,9 @@ export function Navbar() {
                   loading="lazy"
                   width="100"
                   height="100"
-                  className="h-10 w-10 rounded-full"
-                  src="/avatar.jpeg"
+                  className="h-10 w-10 rounded"
+                  // src="/avatar.jpeg"
+                  src="/favicon.png"
                 />
                 <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white to-transparent blur-sm opacity-0 transform -translate-x-12 rotate-15"></div>
               </div>
