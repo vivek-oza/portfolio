@@ -45,6 +45,8 @@
 
 :root {
   --radius: 0.625rem;
+  /* Pattern color for light theme (slightly dark on light bg) */
+  --pattern-fg: rgba(0, 0, 0, 0.06);
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
@@ -79,6 +81,8 @@
 }
 
 .dark {
+  /* Pattern color for dark theme (slightly light on dark bg) */
+  --pattern-fg: rgba(255, 255, 255, 0.08);
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
