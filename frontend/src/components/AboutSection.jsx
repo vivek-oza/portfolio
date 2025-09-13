@@ -1,6 +1,7 @@
 import React from 'react'
 import CustomHeading from './custom/custom-heading'
 import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr'
+import { ExternalLinkButton } from './ui/external-link-button';
 
 export default function AboutSection() {
     return (
@@ -20,20 +21,12 @@ export default function AboutSection() {
                         </div>
                     </div>
                     <div className='flex flex-row items-center space-x-6'>
-                        <a href="#" className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
-                            <div className='relative'>
-                                Let's Connect
-                                <span className='absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300 group-hover:w-full'></span>
-                            </div>
-                            <ArrowRightIcon className='inline-block transition-transform duration-300 group-hover:translate-x-1' />
-                        </a>
-                        <a href="#" className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
-                            <div className='relative'>
-                                Download CV
-                                <span className='absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300 group-hover:w-full'></span>
-                            </div>
-                            <ArrowRightIcon className='inline-block transition-transform duration-300 group-hover:translate-x-1' />
-                        </a>
+                        <ExternalLinkButton href="#" className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
+                            Let's Connect
+                        </ExternalLinkButton>
+                        <ExternalLinkButton href="#" className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
+                            Download CV
+                        </ExternalLinkButton>
                     </div>
                 </div>
                 <div className='flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700'>

@@ -1,4 +1,5 @@
 import AboutSection from "./AboutSection";
+import ContactSection from "./ContactSection";
 import EducationCertificateSection from "./EducationCertificateSection";
 import HeaderSection from "./HeaderSection";
 import ProjectSection from "./ProjectSection";
@@ -13,6 +14,7 @@ export function Home() {
         <AboutSection />
         <EducationCertificateSection />
         <ProjectSection />
+        <ContactSection />
       </div>
     </div>
   );

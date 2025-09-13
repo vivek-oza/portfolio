@@ -2,6 +2,7 @@ import React from 'react'
 import CustomHeading from './custom/custom-heading'
 import { ArrowCircleUpRightIcon } from '@phosphor-icons/react'
 import ProjectCard from './custom/ProjectCard'
+import { ExternalLinkButton } from "@/components/ui/external-link-button";
 
 export default function ProjectSection() {
     const data = [
@@ -18,16 +19,15 @@ export default function ProjectSection() {
                 <div className='px-12 flex flex-row justify-start space-y-2'>
                     <div className='text-start flex flex-row space-x-2 text-neutral-600 dark:text-neutral-400'>
                         <div>Explore some of my recent projects below.</div>
-                        <a href='#' className='text-neutral-600 cursor-pointer flex items-center dark:text-neutral-400'>
-                            <em> For more, visit my GitHub profile. </em>
-                            <ArrowCircleUpRightIcon className='ms-1 inline-block items-center' weight='light' size={22} />
-                        </a>
+                        <ExternalLinkButton>
+                            <em>For more, visit my GitHub profile.</em>
+                        </ExternalLinkButton>
                     </div>
                 </div>
 
                 <div className='bg-neutral-200 dark:bg-neutral-700 w-full h-[1px]'></div>
 
-                <div className='flex flex-col space-y-12 '>
+                <div className="grid grid-cols-1 md:grid-cols-2 px-12 w-full">
                     {data.map(([title, desc, image], index) => (
                         <ProjectCard
                             key={index}
