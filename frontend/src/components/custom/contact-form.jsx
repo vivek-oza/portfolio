@@ -14,7 +14,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useContactStore from "@/stores/contact-store";
-import { Envelope, PaperPlaneTilt, WarningCircle, Spinner } from "phosphor-react";
+import { Envelope, PaperPlaneTilt, WarningCircle, Spinner, CheckCircle } from "phosphor-react";
+import { motion } from "framer-motion";
+
+const toastVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { type: "spring", damping: 25, stiffness: 300 } },
+  exit: { opacity: 0, x: 50 }
+};
+
+const iconVariants = {
+  hover: { scale: 1.1, rotate: 10 },
+  tap: { scale: 0.9 }
+};
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -43,46 +55,94 @@ export default function ContactForm() {
 
   async function onSubmit(values) {
     setIsSubmitting(true);
-    const loadingToastId = toast({
-      title: (
-        <div className="flex items-center gap-2">
-          <Spinner className="animate-spin" size={20} />
-          <span>Sending message...</span>
+    const loadingToastId = toast.custom((t) => (
+      <motion.div
+        className="flex items-center gap-4 px-4 py-2 relative bg-neutral-200 dark:bg-neutral-700 w-fit min-w-[320px] max-w-lg border-none shadow-none rounded-none"
+        style={{ boxShadow: 'none' }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className='size-1 -left-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+        <div className='size-1 -right-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+        <div className='size-1 -left-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+        <div className='size-1 -right-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+        <motion.div
+          className="animate-spin"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Spinner size={24} />
+        </motion.div>
+        <div>
+          <span className="dark:text-white text-xl font-medium">Sending message...</span>
+          <div className="text-sm text-neutral-600 dark:text-neutral-400">
+            Please wait while we send your message
+          </div>
         </div>
-      ),
-      description: "Please wait while we send your message",
-      duration: Infinity,
-    });
+      </motion.div>
+    ), { duration: Infinity });
 
     try {
       setFormData(values);
-      
+
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast({
-        title: (
-          <div className="flex items-center gap-2">
-            <PaperPlaneTilt size={20} />
-            <span>Message sent!</span>
+
+      toast.custom((t) => (
+        <motion.div
+          className="flex items-center gap-4 px-4 py-2 relative bg-neutral-200 dark:bg-neutral-700 w-fit min-w-[320px] max-w-lg border-none shadow-none rounded-none"
+          style={{ boxShadow: 'none' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, x: 50 }}
+        >
+          <div className='size-1 -left-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <div className='size-1 -right-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <div className='size-1 -left-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <div className='size-1 -right-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: 10 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <CheckCircle size={28} className="text-green-500" />
+          </motion.div>
+          <div>
+            <span className="dark:text-white text-xl font-medium">Message sent!</span>
+            <div className="text-sm text-neutral-600 dark:text-neutral-400">
+              We've received your message and will get back to you soon.
+            </div>
           </div>
-        ),
-        description: "We've received your message and will get back to you soon.",
-        duration: 5000,
-      });
+        </motion.div>
+      ), { duration: 10000 });
+
       form.reset();
     } catch (error) {
-      toast({
-        title: (
-          <div className="flex items-center gap-2">
-            <WarningCircle size={20} />
-            <span>Error sending message</span>
+      toast.custom((t) => (
+        <motion.div
+          className="flex items-center gap-4 px-4 py-2 relative bg-neutral-200 dark:bg-neutral-700 w-fit min-w-[320px] max-w-lg border-none shadow-none rounded-none"
+          style={{ boxShadow: 'none' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, x: 50 }}
+        >
+          <div className='size-1 -left-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <div className='size-1 -right-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <div className='size-1 -left-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <div className='size-1 -right-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <WarningCircle size={28} className="text-red-500" />
+          </motion.div>
+          <div>
+            <span className="dark:text-white text-xl font-medium">Error sending message</span>
+            <div className="text-sm text-neutral-600 dark:text-neutral-400">
+              Failed to send message. Please try again.
+            </div>
           </div>
-        ),
-        variant: "destructive",
-        description: "Failed to send message. Please try again.",
-        duration: 5000,
-      });
+        </motion.div>
+      ), { duration: 10000 });
     } finally {
       toast.dismiss(loadingToastId);
       setIsSubmitting(false);

@@ -11,6 +11,7 @@ export default function ProjectSection() {
         ['This portfolio - Yes I built this', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/3.png'],
         ['Digilynk - Web development agency', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/2.png'],
         ['The bachelor\’s Space - Hostel website ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/5.png'],
+        ['Creed creations - Creative agency ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/6.png'],
     ]
     return (
         <>
