@@ -1,3 +1,4 @@
+import { contact_mail, github_profile, linkedin_profile } from '@/lib/constants';
 import { Navbar } from './Navbar';
 import { EnvelopeSimpleIcon, GithubLogoIcon, LinkedinLogoIcon } from '@phosphor-icons/react';
 import { Toaster } from 'react-hot-toast';
@@ -41,9 +42,9 @@ export function Layout({ children }) {
                 <div>&copy; 2025 Vivek's Portfolio. Built with love by vivek. </div>
                 <div>
                   <ul className='flex flex-row space-x-2'>
-                    <a target='_blank' href="https://linkedin.com/in/vivek-oza"><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <LinkedinLogoIcon size={24} /> </div> </li></a>
-                    <a target='_blank' href="https://github.com/vivek-oza"><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <GithubLogoIcon size={24} /> </div> </li></a>
-                    <a target='_blank' href="mailto:vivekoza297@gmail.com"><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <EnvelopeSimpleIcon size={24} /> </div> </li></a>
+                    <a target='_blank' href={linkedin_profile}><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <LinkedinLogoIcon size={24} /> </div> </li></a>
+                    <a target='_blank' href={github_profile}><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <GithubLogoIcon size={24} /> </div> </li></a>
+                    <a target='_blank' href={contact_mail}><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <EnvelopeSimpleIcon size={24} /> </div> </li></a>
                   </ul>
                 </div>
               </div>

@@ -187,7 +187,7 @@ export default function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Your message here..."
-                  className="min-h-[220px]"
+                  className="min-h-[120px]"
                   {...field}
                 />
               </FormControl>

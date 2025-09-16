@@ -3,6 +3,7 @@ import CustomHeading from './custom/custom-heading'
 import { ArrowCircleUpRightIcon } from '@phosphor-icons/react'
 import ProjectCard from './custom/ProjectCard'
 import { ExternalLinkButton } from "@/components/ui/external-link-button";
+import { github_profile } from '@/lib/constants';
 
 export default function ProjectSection() {
     const data = [
@@ -20,7 +21,7 @@ export default function ProjectSection() {
                 <div className='px-12 flex flex-row justify-start space-y-2'>
                     <div className='text-start flex flex-row space-x-2 text-neutral-600 dark:text-neutral-400'>
                         <div>Explore some of my recent projects below.</div>
-                        <ExternalLinkButton>
+                        <ExternalLinkButton href={github_profile}>
                             <em>For more, visit my GitHub profile.</em>
                         </ExternalLinkButton>
                     </div>

@@ -3,6 +3,7 @@ import React from 'react'
 import { ExternalLinkButton } from '../ui/external-link-button'
 import ImageChip from './image-chip'
 import { ArrowUpRight, ArrowUpRightSquareIcon } from 'lucide-react'
+import { github_profile, linkedin_profile } from '@/lib/constants'
 
 export default function ProfileCard({ image, name, caption }) {
     return (
@@ -31,8 +32,8 @@ export default function ProfileCard({ image, name, caption }) {
                 </div>
                 <div className='text-center max-w-[300px] mx-auto'>{caption}</div>
                 <div className='mx-auto group flex flex-row items-center space-x-2 text-neutral-600 dark:text-neutral-400'>
-                    <a href="https://linkedin.com/in/vivek-oza" target="_blank" rel="noopener noreferrer"> <ImageChip image_src={'/skills/linkedin.png'} image_alt="My Socials" image_title="LinkedIn" className={'dark:bg-neutral-800 bg-white dark:hover:bg-neutral-600 dark:hover:text-white hover:text-black hover:bg-white transition p-2'} /></a>
-                    <a href="https://github.com/vivek-oza" target="_blank" rel="noopener noreferrer"> <ImageChip image_src={'/skills/github.png'} image_alt="My Socials" image_title="Github" className={'dark:bg-neutral-800 bg-white dark:hover:bg-neutral-600 dark:hover:text-white hover:text-black hover:bg-white transition p-2'} /></a>
+                    <a href={linkedin_profile} target="_blank" rel="noopener noreferrer"> <ImageChip image_src={'/skills/linkedin.png'} image_alt="My Socials" image_title="LinkedIn" className={'dark:bg-neutral-800 bg-white dark:hover:bg-neutral-600 dark:hover:text-white hover:text-black hover:bg-white transition p-2'} /></a>
+                    <a href={github_profile} target="_blank" rel="noopener noreferrer"> <ImageChip image_src={'/skills/github.png'} image_alt="My Socials" image_title="Github" className={'dark:bg-neutral-800 bg-white dark:hover:bg-neutral-600 dark:hover:text-white hover:text-black hover:bg-white transition p-2'} /></a>
                 </div>
             </div>
         </>

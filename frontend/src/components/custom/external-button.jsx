@@ -1,10 +1,12 @@
 import { ArrowCircleUpRightIcon, ArrowRightIcon } from '@phosphor-icons/react';
 import { ArrowUpRightIcon } from 'lucide-react';
 
-export function ExternalButton({ className = '', children }) {
+export function ExternalButton({ className = '', children, href }) {
     return (
         <a
-            href="#"
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`group relative text-neutral-600 cursor-pointer flex items-center dark:text-neutral-400 ${className}`}
         >
             <span className="relative  group-hover:text-white transition-all duration-300">

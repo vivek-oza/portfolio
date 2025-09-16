@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomHeading from './custom/custom-heading'
-import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr'
 import { ExternalLinkButton } from './ui/external-link-button';
+import { linkedin_profile } from '@/lib/constants';
 
 export default function AboutSection() {
     return (
@@ -21,11 +21,15 @@ export default function AboutSection() {
                         </div>
                     </div>
                     <div className='flex flex-row items-center space-x-6'>
-                        <ExternalLinkButton href="#" className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
+                        <ExternalLinkButton href={linkedin_profile} className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
                             Let's Connect
                         </ExternalLinkButton>
-                        <ExternalLinkButton href="#" className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
-                            Download CV
+                        <ExternalLinkButton
+                            href={"/documents/vivek_CV.pdf"}
+                            download="vivek_CV.pdf"
+                            className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors'
+                        >
+                            <span>Download CV</span>
                         </ExternalLinkButton>
                     </div>
                 </div>

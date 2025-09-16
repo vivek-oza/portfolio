@@ -1,9 +1,11 @@
 import { ArrowCircleUpRightIcon } from '@phosphor-icons/react';
 
-export function ExternalLinkButton({ className = '', children }) {
+export function ExternalLinkButton({ className = '', children, href, download }) {
     return (
         <a
-            href="#"
+            target='_blank'
+            href={href}
+            download={download}
             className={`group relative text-neutral-600 cursor-pointer flex items-center dark:text-neutral-400 ${className}`}
         >
             <span className="relative  group-hover:text-white transition-all duration-300">
