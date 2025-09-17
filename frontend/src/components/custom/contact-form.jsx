@@ -14,8 +14,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useContactStore from "@/stores/contact-store";
-import { Envelope, PaperPlaneTilt, WarningCircle, Spinner, CheckCircle } from "phosphor-react";
+import { Envelope, PaperPlaneTilt, WarningCircle, Spinner, CheckCircle, X } from "phosphor-react";
 import { motion } from "framer-motion";
+import { useEffect } from 'react';
 
 const toastVariants = {
   initial: { opacity: 0, y: 20 },
@@ -44,6 +45,13 @@ export default function ContactForm() {
   const { toast } = useToast();
   const { setFormData, setIsSubmitting, isSubmitting } = useContactStore();
 
+  // Cleanup function to clear any toasts when component unmounts
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, [toast]);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,96 +63,102 @@ export default function ContactForm() {
 
   async function onSubmit(values) {
     setIsSubmitting(true);
-    const loadingToastId = toast.custom((t) => (
-      <motion.div
-        className="flex items-center gap-4 px-4 py-2 relative bg-neutral-200 dark:bg-neutral-700 w-fit min-w-[320px] max-w-lg border-none shadow-none rounded-none"
-        style={{ boxShadow: 'none' }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className='size-1 -left-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-        <div className='size-1 -right-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-        <div className='size-1 -left-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-        <div className='size-1 -right-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-        <motion.div
-          className="animate-spin"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Spinner size={24} />
-        </motion.div>
-        <div>
-          <span className="dark:text-white text-xl font-medium">Sending message...</span>
-          <div className="text-sm text-neutral-600 dark:text-neutral-400">
-            Please wait while we send your message
+    const toastOptions = {
+      position: 'bottom-right',
+      duration: 10000,
+      className: '!bg-white dark:!bg-neutral-900 !text-neutral-900 dark:!text-white !shadow-lg !p-0 !min-w-[320px] !border !border-neutral-200 dark:!border-neutral-700 overflow-hidden',
+      containerStyle: {
+        marginBottom: '1rem',
+      },
+      containerClassName: '!flex flex-col-reverse gap-2',
+    };
+
+    const loadingToastId = 'loading-toast';
+    toast.custom((t) => (
+      <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+        <div className="flex items-center gap-4 p-4">
+          <div className="relative">
+            <Spinner size={28} className="animate-spin text-blue-500" />
           </div>
+          <div className="flex-1 text-left">
+            <div className="font-medium text-base">Sending message</div>
+            <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Please wait a moment</div>
+          </div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toast.dismiss(t.id);
+            }}
+            className="text-neutral-400 cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+          >
+            <X size={20} weight="bold" />
+          </button>
         </div>
-      </motion.div>
-    ), { duration: Infinity });
+      </div>
+    ), { ...toastOptions, id: loadingToastId, duration: 1000000 });
 
     try {
       setFormData(values);
 
-      // Simulate API call
+      // Simulate API call with 2 second delay
       await new Promise(resolve => setTimeout(resolve, 2000));
-
-      toast.custom((t) => (
-        <motion.div
-          className="flex items-center gap-4 px-4 py-2 relative bg-neutral-200 dark:bg-neutral-700 w-fit min-w-[320px] max-w-lg border-none shadow-none rounded-none"
-          style={{ boxShadow: 'none' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, x: 50 }}
-        >
-          <div className='size-1 -left-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <div className='size-1 -right-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <div className='size-1 -left-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <div className='size-1 -right-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: 10 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <CheckCircle size={28} className="text-green-500" />
-          </motion.div>
-          <div>
-            <span className="dark:text-white text-xl font-medium">Message sent!</span>
-            <div className="text-sm text-neutral-600 dark:text-neutral-400">
-              We've received your message and will get back to you soon.
-            </div>
-          </div>
-        </motion.div>
-      ), { duration: 10000 });
-
-      form.reset();
-    } catch (error) {
-      toast.custom((t) => (
-        <motion.div
-          className="flex items-center gap-4 px-4 py-2 relative bg-neutral-200 dark:bg-neutral-700 w-fit min-w-[320px] max-w-lg border-none shadow-none rounded-none"
-          style={{ boxShadow: 'none' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, x: 50 }}
-        >
-          <div className='size-1 -left-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <div className='size-1 -right-0.5 -bottom-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <div className='size-1 -left-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <div className='size-1 -right-0.5 -top-0.5 absolute bg-black dark:bg-white rounded-full'></div>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <WarningCircle size={28} className="text-red-500" />
-          </motion.div>
-          <div>
-            <span className="dark:text-white text-xl font-medium">Error sending message</span>
-            <div className="text-sm text-neutral-600 dark:text-neutral-400">
-              Failed to send message. Please try again.
-            </div>
-          </div>
-        </motion.div>
-      ), { duration: 10000 });
-    } finally {
+      
+      // Alternate between success and error
+      const shouldSucceed = Math.random() > 0.5;
+      
+      // Dismiss loading toast
       toast.dismiss(loadingToastId);
+      
+      if (shouldSucceed) {
+        // Show success toast
+        toast.custom((t) => (
+          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-green-500/20 overflow-hidden">
+            <div className="flex items-center gap-4 p-4">
+              <div className="text-green-500">
+                <CheckCircle size={28} weight="fill" />
+              </div>
+              <div className="flex-1 text-left">
+                <div className="font-medium text-base">Message sent!</div>
+                <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">We'll get back to you soon</div>
+              </div>
+              <button
+                onClick={() => toast.dismiss(t.id)}
+                className="text-neutral-400 cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+              >
+                <X size={20} weight="bold" />
+              </button>
+            </div>
+          </div>
+        ), { ...toastOptions, duration: 100000 });
+        
+        form.reset();
+      } else {
+        // Show error toast
+        throw new Error('Simulated error');
+      }
+    } catch (error) {
+      // Dismiss loading toast and show error
+      toast.dismiss(loadingToastId);
+      toast.custom((t) => (
+        <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-red-500/20 overflow-hidden">
+          <div className="flex items-center gap-4 p-4">
+            <div className="text-red-500">
+              <WarningCircle size={28} weight="fill" />
+            </div>
+            <div className="flex-1 text-left">
+              <div className="font-medium text-base">Error sending message</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Please try again later</div>
+            </div>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="text-neutral-400 cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+            >
+              <X size={20} weight="bold" />
+            </button>
+          </div>
+        </div>
+      ), { ...toastOptions, duration: 100000 });
+    } finally {
       setIsSubmitting(false);
     }
   }
