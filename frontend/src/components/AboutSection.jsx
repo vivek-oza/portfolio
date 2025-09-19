@@ -5,7 +5,7 @@ import { linkedin_profile } from '@/lib/constants';
 
 export default function AboutSection() {
     return (
-        <div className='flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start px-12'>
+        <div id="about" className='flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start px-12 py-20'>
             <div className='flex flex-row flex-wrap md:flex-nowrap   space-x-8'>
                 <div className='py-12 flex flex-col space-y-8'>
                     <CustomHeading className={"text-xl font-medium tracking-wide"} heading_text={'Something about me'} />

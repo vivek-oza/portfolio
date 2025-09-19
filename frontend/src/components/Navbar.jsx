@@ -47,9 +47,30 @@ export function Navbar() {
     { name: "Contact", href: "#contact" },
   ];
 
-  // Close menu when clicking on a nav item
-  const handleNavClick = () => {
+  // Handle smooth scroll and close menu when clicking on a nav item
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
     setIsMenuOpen(false);
+    
+    // Get the target element
+    const targetId = href.startsWith('#') ? href.substring(1) : href;
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      // Calculate the offset for the fixed header
+      const headerOffset = 100;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      // Smooth scroll to the target element with offset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Update URL without page reload
+      window.history.pushState(null, null, `#${targetId}`);
+    }
   };
 
   return (
@@ -83,7 +104,7 @@ export function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                onClick={handleNavClick}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="relative px-3 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
               >
                 <span className="relative z-10">{item.name}</span>
@@ -132,7 +153,7 @@ export function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={handleNavClick}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="block px-3 py-2 text-base font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md"
                 >
                   {item.name}
