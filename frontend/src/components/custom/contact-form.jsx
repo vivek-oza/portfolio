@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import useContactStore from "@/stores/contact-store";
 import { Envelope, PaperPlaneTilt, WarningCircle, Spinner, CheckCircle, X } from "phosphor-react";
 import { motion } from "framer-motion";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const toastVariants = {
   initial: { opacity: 0, y: 20 },
@@ -45,11 +45,44 @@ export default function ContactForm() {
   const { toast } = useToast();
   const { setFormData, setIsSubmitting, isSubmitting } = useContactStore();
 
+  const toastShownRef = useRef(false);
+
   // Cleanup function to clear any toasts when component unmounts
   useEffect(() => {
     return () => {
       toast.dismiss();
     };
+  }, [toast]);
+
+  // Show the initial heads up toast only once when component mounts
+  useEffect(() => {
+    if (!toastShownRef.current) {
+      toastShownRef.current = true;
+
+      const toastId = 'contact-form-heads-up';
+
+      toast.custom((t) => (
+        <div className="bg-neutral-950 rounded-lg shadow-lg border border-amber-500/30 p-4">
+          <div className="flex items-start gap-3">
+            <div className="text-amber-400 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div>
+              <div className="font-medium text-white">👋 Just a heads up!</div>
+              <div className="text-sm text-neutral-300">This contact form is just for show (for now). I'm working on connecting it to a real backend.</div>
+            </div>
+          </div>
+        </div>
+      ), {
+        id: toastId,
+        duration: 8000,
+        position: 'bottom-right'
+      });
+    }
   }, [toast]);
 
   const form = useForm({
@@ -73,16 +106,18 @@ export default function ContactForm() {
       containerClassName: '!flex flex-col-reverse gap-2',
     };
 
+    // No need to show the toast here anymore as it's shown on component mount
+
     const loadingToastId = 'loading-toast';
     toast.custom((t) => (
-      <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-800 overflow-hidden">
+      <div className="bg-neutral-950 rounded-lg shadow-lg border border-neutral-800 overflow-hidden">
         <div className="flex items-center gap-4 p-4">
           <div className="relative">
-            <Spinner size={28} className="animate-spin text-blue-500" />
+            <Spinner size={28} className="animate-spin text-blue-400" />
           </div>
           <div className="flex-1 text-left">
-            <div className="font-medium text-base">Sending message</div>
-            <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Please wait a moment</div>
+            <div className="font-medium text-white text-base">Sending message</div>
+            <div className="text-sm text-neutral-300 mt-0.5">Please wait a moment</div>
           </div>
           <button
             onClick={(e) => {
@@ -102,24 +137,24 @@ export default function ContactForm() {
 
       // Simulate API call with 2 second delay
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Alternate between success and error
-      const shouldSucceed = Math.random() > 0.5;
-      
+      const shouldSucceed = 1;
+
       // Dismiss loading toast
       toast.dismiss(loadingToastId);
-      
+
       if (shouldSucceed) {
         // Show success toast
         toast.custom((t) => (
-          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-green-500/20 overflow-hidden">
+          <div className="bg-neutral-950 rounded-lg shadow-lg border border-green-500/30 overflow-hidden">
             <div className="flex items-center gap-4 p-4">
-              <div className="text-green-500">
+              <div className="text-green-400">
                 <CheckCircle size={28} weight="fill" />
               </div>
               <div className="flex-1 text-left">
-                <div className="font-medium text-base">Message sent!</div>
-                <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">We'll get back to you soon</div>
+                <div className="font-medium text-white text-base">Message sent! (Well, not really)</div>
+                <div className="text-sm text-neutral-300 mt-0.5">This is just a demo. I'll get back to you for real once this is hooked up!</div>
               </div>
               <button
                 onClick={() => toast.dismiss(t.id)}
@@ -130,7 +165,7 @@ export default function ContactForm() {
             </div>
           </div>
         ), { ...toastOptions, duration: 100000 });
-        
+
         form.reset();
       } else {
         // Show error toast
@@ -140,14 +175,14 @@ export default function ContactForm() {
       // Dismiss loading toast and show error
       toast.dismiss(loadingToastId);
       toast.custom((t) => (
-        <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-red-500/20 overflow-hidden">
+        <div className="bg-neutral-950 rounded-lg shadow-lg border border-red-500/30 overflow-hidden">
           <div className="flex items-center gap-4 p-4">
-            <div className="text-red-500">
+            <div className="text-red-400">
               <WarningCircle size={28} weight="fill" />
             </div>
             <div className="flex-1 text-left">
-              <div className="font-medium text-base">Error sending message</div>
-              <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Please try again later</div>
+              <div className="font-medium text-white text-base">Whoops! Something went wrong</div>
+              <div className="text-sm text-neutral-300 mt-0.5">Good news is, it's just a demo! Bad news is, I didn't get your message.</div>
             </div>
             <button
               onClick={() => toast.dismiss(t.id)}
@@ -209,14 +244,21 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button
+          type="submit"
+          className="w-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-white transition-colors"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? (
             <>
               <Spinner className="mr-2 animate-spin" size={20} />
               Sending...
             </>
           ) : (
-            "Send Message"
+            <span className="flex items-center gap-2">
+              Send Message
+              <span className="text-xs opacity-70">(Demo)</span>
+            </span>
           )}
         </Button>
       </form>
