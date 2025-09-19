@@ -54,37 +54,6 @@ export default function ContactForm() {
     };
   }, [toast]);
 
-  // Show the initial heads up toast only once when component mounts
-  useEffect(() => {
-    if (!toastShownRef.current) {
-      toastShownRef.current = true;
-
-      const toastId = 'contact-form-heads-up';
-
-      toast.custom((t) => (
-        <div className="bg-neutral-950 rounded-lg shadow-lg border border-amber-500/30 p-4">
-          <div className="flex items-start gap-3">
-            <div className="text-amber-400 mt-0.5">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-            </div>
-            <div>
-              <div className="font-medium text-white">👋 Just a heads up!</div>
-              <div className="text-sm text-neutral-300">This contact form is just for show (for now). I'm working on connecting it to a real backend.</div>
-            </div>
-          </div>
-        </div>
-      ), {
-        id: toastId,
-        duration: 8000,
-        position: 'bottom-right'
-      });
-    }
-  }, [toast]);
-
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
