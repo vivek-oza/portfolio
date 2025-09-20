@@ -1,11 +1,24 @@
-import React from 'react'
-import CustomHeading from './custom/custom-heading'
-import { ArrowCircleUpRightIcon } from '@phosphor-icons/react'
-import ProjectCard from './custom/ProjectCard'
+import React from 'react';
+import CustomHeading from './custom/custom-heading';
+import ProjectCard from './custom/ProjectCard';
 import { ExternalLinkButton } from "@/components/ui/external-link-button";
 import { github_profile } from '@/lib/constants';
+import { useToast } from "@/components/ui/use-toast";
 
 export default function ProjectSection() {
+    const { toast } = useToast();
+    
+    const showProjectToast = (e) => {
+        e.preventDefault();
+        
+        toast({
+            title: "Coming Soon!",
+            description: "This feature is coming soon! I'm still working on it.",
+            variant: "default",
+            duration: 5000,
+        });
+    };
+
     const data = [
         ['Placementor - College placement portal', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/1.png'],
         ['Buildship - AI website builder', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/4.png'],
@@ -15,19 +28,22 @@ export default function ProjectSection() {
         ['Creed creations - Creative agency ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/6.png'],
     ]
     return (
-        <div id="projects" className="flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start px-12">
+        <div id="projects" className="flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start py-12">
             <CustomHeading className={'mx-12 text-xl font-medium tracking-wide'} heading_text={'I love building things'} />
-            <div className='px-12 flex flex-col space-y-4'>
-                <div className='text-start flex flex-row flex-wrap gap-2 text-neutral-600 dark:text-neutral-400'>
+            <div className='flex flex-col space-y-4'>
+                <div className='px-12 text-start flex flex-row flex-wrap gap-2 text-neutral-600 dark:text-neutral-400'>
                     <div>Explore some of my recent projects below.</div>
-                    <ExternalLinkButton href={github_profile}>
+                    <ExternalLinkButton 
+                        href={github_profile}
+                        onClick={showProjectToast}
+                    >
                         <em>For more, visit my GitHub profile.</em>
                     </ExternalLinkButton>
                 </div>
 
                 <div className='bg-neutral-200 dark:bg-neutral-700 w-full h-[1px]'></div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <div className="px-12 grid grid-cols-1 md:grid-cols-2 w-full">
                     {data.map(([title, desc, image], index) => (
                         <ProjectCard
                             key={index}

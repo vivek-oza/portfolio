@@ -7,15 +7,34 @@ export function Layout({ children }) {
   return (
     <div className="min-h-screen max-w-4xl mx-auto bg-white dark:bg-neutral-900">
       <Toaster 
-        position="top-center"
+        position="bottom-right"
         toastOptions={{
-          className: '',
-          duration: 10000,
+          className: '!bg-neutral-50 dark:!bg-neutral-900',
+          duration: 5000,
           style: {
             background: 'hsl(var(--background))',
             color: 'hsl(var(--foreground))',
             border: '1px solid hsl(var(--border))',
             padding: '16px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+            zIndex: 9999,
+          },
+          success: {
+            className: '!bg-green-50 dark:!bg-green-900/30',
+            iconTheme: {
+              primary: 'hsl(142.1 76.2% 36.3%)',
+              secondary: 'white',
+            },
+          },
+          error: {
+            className: '!bg-red-50 dark:!bg-red-900/30',
+            iconTheme: {
+              primary: 'hsl(0 84.2% 60.2%)',
+              secondary: 'white',
+            },
+          },
+          loading: {
+            className: '!bg-blue-50 dark:!bg-blue-900/30',
           },
         }}
       />
