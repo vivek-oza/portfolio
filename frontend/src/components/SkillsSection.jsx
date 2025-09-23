@@ -32,7 +32,7 @@ export default function SkillsSection() {
     ];
     return (
         <>
-            <div className='shadow-[inset_0_0px_4px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0px_4px_rgba(255,255,255,0.05)] flex flex-col space-y-4 text-start p-12 border-y border-neutral-200 dark:border-neutral-700'>
+            <div className='shadow-[inset_0px_0px_15px_7px_#00000024] dark:shadow-[inset_0px_0px_15px_7px_#00000050] flex flex-col space-y-4 text-start p-12 border-y border-neutral-200 dark:border-neutral-700'>
                 {/* Technologies I use  */}
                 <CustomHeading className={"text-xl font-medium tracking-wide"} heading_text="Technologies I use" />
                 <div className='text-neutral-600 max-w-xl dark:text-neutral-400'>
@@ -44,7 +44,7 @@ export default function SkillsSection() {
                         <ImageChip
                             key={index}
                             image_src={item[0]}
-                            fallback_src="/favicon.png"
+                            fallback_src="/favicon.svg"
                             image_alt={item[1]}
                             image_title={item[1]}
                         />

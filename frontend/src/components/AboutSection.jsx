@@ -33,8 +33,8 @@ export default function AboutSection() {
                         </ExternalLinkButton>
                     </div>
                 </div>
-                <div className='flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700'>
-                    <img className='max-w-full w-[1200px]' src="/logo.png" alt="" />
+                <div className="bg-[url('/magic_dot_pattern.png')] bg-cover bg-center bg-repeat flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700">
+                    <img className='max-w-full w-[1200px]' src="/logo.svg" alt="" />
                 </div>
             </div>
         </div>

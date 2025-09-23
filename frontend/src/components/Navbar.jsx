@@ -51,23 +51,23 @@ export function Navbar() {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setIsMenuOpen(false);
-    
+
     // Get the target element
     const targetId = href.startsWith('#') ? href.substring(1) : href;
     const targetElement = document.getElementById(targetId);
-    
+
     if (targetElement) {
       // Calculate the offset for the fixed header
       const headerOffset = 100;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
+
       // Smooth scroll to the target element with offset
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
       });
-      
+
       // Update URL without page reload
       window.history.pushState(null, null, `#${targetId}`);
     }
@@ -78,21 +78,18 @@ export function Navbar() {
       className={`sticky top-0 z-40 w-full transition-all duration-200 ${isScrolled ? 'top-4' : 'top-0'}`}
     >
       <div className={`mx-auto transition-[max-width] duration-300 ${isScrolled ? 'max-w-[48rem]' : 'max-w-[52rem]'}`}>
-        <div className={`flex w-full items-center justify-between rounded-full px-4 py-2 transition-[background-color,backdrop-filter,box-shadow,border-color] duration-300 ${
-          isScrolled
-            ? 'bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_0_24px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset]'
-            : 'bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm border border-transparent shadow-none'
-        }`}>
-          <div className="flex items-center">
+        <div className={` flex w-full items-center justify-between rounded-full p-1 transition-[background-color,backdrop-filter,box-shadow,border-color] duration-300 ${isScrolled
+          ? 'bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_0_24px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset]'
+          : 'bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm border border-transparent shadow-none'
+          }`}>
+          <div className="flex items-center ">
             <a href="/" className="flex items-center">
-              <div className="relative overflow-hidden rounded-full">
+              <div className={`relative overflow-hidden rounded-full transition-all  ${isScrolled ? 'rounded-full' : 'rounded-full'}`}>
                 <img
                   alt="Avatar"
                   loading="lazy"
-                  width="40"
-                  height="40"
-                  className="h-10 w-10 rounded"
-                  src="/favicon.png"
+                  className={`${isScrolled ? 'size-14' : 'size-14'} rounded transition-all `}
+                  src="/favicon.svg"
                 />
               </div>
             </a>

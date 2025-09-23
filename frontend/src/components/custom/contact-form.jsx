@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
+import { SendMessageButton } from "@/components/ui/geometric-button";
 import {
   Form,
   FormControl,
@@ -14,8 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useContactStore from "@/stores/contact-store";
-import { Envelope, PaperPlaneTilt, WarningCircle, Spinner, CheckCircle, X } from "phosphor-react";
-import { motion } from "framer-motion";
+import { WarningCircle, Spinner, CheckCircle, X } from "phosphor-react";
 import { useEffect, useRef } from 'react';
 
 const toastVariants = {
@@ -213,23 +212,11 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-        <Button
+        <SendMessageButton 
           type="submit"
-          className="w-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-white transition-colors"
           disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <>
-              <Spinner className="mr-2 animate-spin" size={20} />
-              Sending...
-            </>
-          ) : (
-            <span className="flex items-center gap-2">
-              Send Message
-              <span className="text-xs opacity-70">(Demo)</span>
-            </span>
-          )}
-        </Button>
+          isLoading={isSubmitting}
+        />
       </form>
     </Form>
   );

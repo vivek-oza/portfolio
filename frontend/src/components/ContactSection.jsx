@@ -10,7 +10,7 @@ export default function ContactSection() {
             <CustomHeading className={'mx-12 text-xl font-medium tracking-wide'} heading_text={'Find me here'} />
             <div className='flex flex-row  md:space-x-2 md:space-y-0 space-y-4 space-x-0 items-start px-12'>
                 <div className=''>
-                    <ProfileCard image={"/logo.png"} name="Vivek Oza" caption="Check my socials or send me a message." />
+                    <ProfileCard image={"/logo.svg"} name="Vivek Oza" caption="Check my socials or send me a message." />
                 </div>
                 <div className=' bg-neutral-200 dark:bg-neutral-900 border p-4 rounded-xl w-full h-full'>
                     <ContactForm />

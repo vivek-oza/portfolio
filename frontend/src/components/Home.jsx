@@ -8,7 +8,7 @@ import SkillsSection from "./SkillsSection";
 export function Home() {
   return (
     <div className="">
-      <div className="">
+      <div className="font-manrope">
         <HeaderSection />
         <SkillsSection />
         <AboutSection />

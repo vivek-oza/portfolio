@@ -3,19 +3,22 @@ import CustomHeading from './custom/custom-heading';
 import ProjectCard from './custom/ProjectCard';
 import { ExternalLinkButton } from "@/components/ui/external-link-button";
 import { github_profile } from '@/lib/constants';
-import { useToast } from "@/components/ui/use-toast";
+import toast from 'react-hot-toast';
 
 export default function ProjectSection() {
-    const { toast } = useToast();
-    
     const showProjectToast = (e) => {
         e.preventDefault();
         
-        toast({
-            title: "Coming Soon!",
-            description: "This feature is coming soon! I'm still working on it.",
-            variant: "default",
-            duration: 5000,
+        toast('Coming soon! Working on it...', {
+            duration: 3000,
+            position: 'bottom-right',
+            style: {
+                background: 'hsl(var(--background))',
+                color: 'hsl(var(--foreground))',
+                border: '1px solid hsl(var(--border))',
+                padding: '16px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+            },
         });
     };
 
@@ -28,7 +31,7 @@ export default function ProjectSection() {
         ['Creed creations - Creative agency ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend interdum ullamcorper. Morbi vehicula tellus sit amet nibh dictum iaculis. Suspendisse ac dictum turpis, nec iaculis mi.', '/projects/6.png'],
     ]
     return (
-        <div id="projects" className="flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start py-12">
+        <div id="projects" className=" flex flex-col space-y-4 border-b border-y-neutral-200 dark:border-y-neutral-700 text-start py-12">
             <CustomHeading className={'mx-12 text-xl font-medium tracking-wide'} heading_text={'I love building things'} />
             <div className='flex flex-col space-y-4'>
                 <div className='px-12 text-start flex flex-row flex-wrap gap-2 text-neutral-600 dark:text-neutral-400'>
@@ -43,7 +46,7 @@ export default function ProjectSection() {
 
                 <div className='bg-neutral-200 dark:bg-neutral-700 w-full h-[1px]'></div>
 
-                <div className="px-12 grid grid-cols-1 md:grid-cols-2 w-full">
+                <div className="px-12 grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
                     {data.map(([title, desc, image], index) => (
                         <ProjectCard
                             key={index}

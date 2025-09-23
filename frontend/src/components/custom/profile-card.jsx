@@ -25,7 +25,7 @@ export default function ProfileCard({ image, name, caption }) {
                         <div className='flex flex-row items-center space-x-2 text-neutral-600 dark:text-neutral-400'>
                             <div>Follow me on socials</div> 
                             <ExternalLinkButton href="#">
-                                <img className='size-8 rounded' src="/logo.png" alt="My Socials" />
+                                <img className='size-8 rounded' src="/logo.svg" alt="My Socials" />
                             </ExternalLinkButton>
                         </div>
                     </div> */}
