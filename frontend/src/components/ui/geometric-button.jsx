@@ -1,17 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRightIcon } from '@phosphor-icons/react';
+import { ArrowRightIcon, SpinnerBallIcon} from '@phosphor-icons/react';
 
 const ArrowIcon = ({ className = '' }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="16" 
-    height="16" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
     strokeLinejoin="round"
     className={`inline-block transition-transform duration-300 ${className}`}
   >
@@ -20,9 +20,9 @@ const ArrowIcon = ({ className = '' }) => (
   </svg>
 );
 
-export function GeometricButton({ 
-  children, 
-  onClick, 
+export function GeometricButton({
+  children,
+  onClick,
   className = '',
   showToast = false,
   toastMessage = 'Action completed',
@@ -35,7 +35,7 @@ export function GeometricButton({
     if (onClick) {
       onClick(e);
     }
-    
+
     if (showToast && typeof window !== 'undefined') {
       import('react-hot-toast').then(({ default: toast }) => {
         toast(toastMessage, {
@@ -86,7 +86,7 @@ export function GeometricButton({
           </span>
         ))}
       </span>
-      
+
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0">
@@ -107,7 +107,7 @@ export function GeometricButton({
 // Create a specific button for View Project that can be used in ProjectCard
 export function ViewProjectButton({ children = 'View Project', className = '', ...props }) {
   return (
-    <GeometricButton 
+    <GeometricButton
       className={`w-full max-w-[180px] py-2 text-sm ${className}`}
       showToast={true}
       {...props}
@@ -120,7 +120,7 @@ export function ViewProjectButton({ children = 'View Project', className = '', .
 // Create a specific button for Send Message that can be used in ContactForm
 export function SendMessageButton({ children = 'Send Message', className = '', isLoading = false, ...props }) {
   return (
-    <GeometricButton 
+    <GeometricButton
       className={`w-full py-4 ${className}`}
       variant="primary"
       icon={isLoading ? null : ArrowRightIcon}
@@ -128,7 +128,7 @@ export function SendMessageButton({ children = 'Send Message', className = '', i
     >
       {isLoading ? (
         <span className="flex items-center justify-center gap-2">
-          <Spinner className="animate-spin" size={20} />
+          <SpinnerBallIcon weight='fill' className="animate-spin" size={20} />
           Sending...
         </span>
       ) : (

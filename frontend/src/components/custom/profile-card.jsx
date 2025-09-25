@@ -8,9 +8,9 @@ import { github_profile, linkedin_profile } from '@/lib/constants'
 export default function ProfileCard({ image, name, caption }) {
     return (
         <>
-            <div className='flex flex-col space-y-2 rounded-xl flex-wrap w-[300px] border bg-neutral-200 dark:bg-neutral-900 px-0 py-2'>
+            <div className='flex min-w-[300px] flex-col p-2 space-y-2 rounded-xl flex-wrap border bg-neutral-200 dark:bg-neutral-900'>
                 <div className='flex space-y-2 text-center flex-col'>
-                    <img className='size-[280px] mx-auto rounded-lg' src={image} alt={name} />
+                    <img className='w-[280px] rounded-xl aspect-square py-0 mx-auto' src={image} alt={name} />
                     <div className='text-3xl font-semibold'>{name}</div>
                     {/* <div className='flex flex-row space-x-1'>
                         <LinkedinLogoIcon weight='fill' size={32} />
@@ -30,8 +30,8 @@ export default function ProfileCard({ image, name, caption }) {
                         </div>
                     </div> */}
                 </div>
-                <div className='text-center max-w-[300px] mx-auto'>{caption}</div>
-                <div className='mx-auto group flex flex-row items-center space-x-2 text-neutral-600 dark:text-neutral-400'>
+                <div className='text-center text-wrap mx-auto'>{caption}</div>
+                <div className='mx-auto flex flex-row items-center space-x-2 text-neutral-600 dark:text-neutral-400'>
                     <a href={linkedin_profile} target="_blank" rel="noopener noreferrer"> <ImageChip image_src={'/skills/linkedin.png'} image_alt="My Socials" image_title="LinkedIn" className={'dark:bg-neutral-800 bg-white dark:hover:bg-neutral-600 dark:hover:text-white hover:text-black hover:bg-white transition p-2'} /></a>
                     <a href={github_profile} target="_blank" rel="noopener noreferrer"> <ImageChip image_src={'/skills/github.png'} image_alt="My Socials" image_title="Github" className={'dark:bg-neutral-800 bg-white dark:hover:bg-neutral-600 dark:hover:text-white hover:text-black hover:bg-white transition p-2'} /></a>
                 </div>

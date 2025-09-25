@@ -2,6 +2,7 @@ import React from 'react'
 import CustomHeading from './custom/custom-heading'
 import { ExternalLinkButton } from './ui/external-link-button';
 import { linkedin_profile } from '@/lib/constants';
+import { ExternalButton } from './custom/external-button';
 
 export default function AboutSection() {
     return (
@@ -21,19 +22,20 @@ export default function AboutSection() {
                         </div>
                     </div>
                     <div className='flex flex-row items-center space-x-6'>
-                        <ExternalLinkButton href={linkedin_profile} className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300'>
+                        <ExternalButton href={linkedin_profile} className='flex flex-row group items-center relative text-neutral-700 dark:text-neutral-300'>
                             Let's Connect
-                        </ExternalLinkButton>
-                        <ExternalLinkButton
+                        </ExternalButton>
+                        <ExternalButton
                             href={"/documents/vivek_CV.pdf"}
                             download="vivek_CV.pdf"
-                            className='flex flex-row group items-center space-x-2 relative text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors'
+                            className='flex flex-row group items-center relative text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors'
                         >
                             <span>Download CV</span>
-                        </ExternalLinkButton>
+                        </ExternalButton>
                     </div>
                 </div>
-                <div className="bg-[url('/magic_dot_pattern.png')] bg-cover bg-center bg-repeat flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700">
+                {/* <div className="bg-[url('/magic_dot_pattern.png')] bg-cover bg-center bg-repeat flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700"> */}
+                <div className="magicpattern bg-cover bg-center bg-repeat flex py-12 items-center justify-center md:border-x border-x-neutral-200 border-x-0 dark:border-x-neutral-700">
                     <img className='max-w-full w-[1200px]' src="/logo.svg" alt="" />
                 </div>
             </div>

@@ -4,6 +4,7 @@ import EducationCertificateSection from "./EducationCertificateSection";
 import HeaderSection from "./HeaderSection";
 import ProjectSection from "./ProjectSection";
 import SkillsSection from "./SkillsSection";
+import DecorativeSection from "./DecorativeSection";
 
 export function Home() {
   return (
@@ -15,6 +16,7 @@ export function Home() {
         <EducationCertificateSection />
         <ProjectSection />
         <ContactSection />
+        <DecorativeSection />
       </div>
     </div>
   );
