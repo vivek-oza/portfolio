@@ -17,6 +17,7 @@ export function Home() {
         <ProjectSection />
         <ContactSection />
         <DecorativeSection />
+
       </div>
     </div>
   );

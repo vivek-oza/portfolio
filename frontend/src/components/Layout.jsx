@@ -2,11 +2,12 @@ import { contact_mail, github_profile, linkedin_profile } from '@/lib/constants'
 import { Navbar } from './Navbar';
 import { EnvelopeSimpleIcon, GithubLogoIcon, LinkedinLogoIcon } from '@phosphor-icons/react';
 import { Toaster } from 'react-hot-toast';
+import DecorativeSection from './DecorativeSection';
 
 export function Layout({ children }) {
   return (
     <div className="min-h-screen max-w-4xl mx-auto bg-white dark:bg-neutral-900">
-      <Toaster 
+      <Toaster
         position="bottom-right"
         toastOptions={{
           className: '!bg-neutral-50 dark:!bg-neutral-900',
@@ -43,35 +44,93 @@ export function Layout({ children }) {
         <div className="absolute top-0 right-0 h-full w-4 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed md:w-8"></div>
         <div className="absolute top-0 left-0 h-full w-4 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed md:w-8"></div>
         {children}
-        <footer className="bg-neutral-100 border-y px-12 dark:border-neutral-700 dark:bg-neutral-800/20 py-4">
-          <div className="mx-auto w-full max-w-4xl px-4 md:px-8 text-center text-neutral-600 dark:text-neutral-400">
-            <div className='flex flex-col items-center justify-center space-y-1'>
-              {/* <div className='flex items-center space-x-1'>
-                <div> Built with love</div>
-                <HeartStraightIcon size={22} color="#dc143c" weight="fill" />
-                <div className='flex flex-row items-center space-x-1'>
-                  <div>by vivek. (I got little inspired</div>
-                  <div>
-                    <SmileyWinkIcon size={22} color="#fecd3b" weight="fill" />
-                  </div>
-                  <div>)</div>
+        <footer className="mx-12 py-16 px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Main footer content */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              {/* Left section */}
+              <div className="relative p-4 bg-neutral-200 dark:bg-neutral-800">
+                {/* Pixel corners */}
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -left-0.5 -top-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -right-0.5 -top-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -left-0.5 -bottom-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -right-0.5 -bottom-0.5"></div>
+
+                <h3 className="font-pixelify text-4xl mb-2 text-neutral-800 dark:text-white">vo</h3>
+                <p className="text-base text-wrap text-neutral-600 dark:text-neutral-300">
+                  I make digital experiences better with clean code and thoughtful design.
+                </p>
+              </div>
+
+              {/* Middle section - Navigation */}
+              <div className="relative p-4 bg-neutral-200 dark:bg-neutral-800">
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -left-0.5 -top-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -right-0.5 -top-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -left-0.5 -bottom-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -right-0.5 -bottom-0.5"></div>
+
+                <h3 className="font-pixelify text-2xl mb-2 text-neutral-800 dark:text-white">Quick Links</h3>
+                <ul className="space-y-1.5">
+                  {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+                    <li key={item}>
+                      <a
+                        href={`#${item.toLowerCase()}`}
+                        className="text-sm text-neutral-600 hover:font-bold dark:text-neutral-300 dark:hover:text-white transition-all duration-100"
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Right section - Socials */}
+              <div className="relative p-4 bg-neutral-200 dark:bg-neutral-800">
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -left-0.5 -top-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -right-0.5 -top-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -left-0.5 -bottom-0.5"></div>
+                <div className="absolute w-1.5 h-1.5 bg-black dark:bg-white -right-0.5 -bottom-0.5"></div>
+
+                <h3 className="font-pixelify text-2xl mb-2 text-neutral-800 dark:text-white">Connect</h3>
+                <div className="flex justify-center space-x-2">
+                  {[
+                    { icon: <LinkedinLogoIcon size={28} className='' />, url: linkedin_profile },
+                    { icon: <GithubLogoIcon size={28} className='' />, url: github_profile },
+                    { icon: <EnvelopeSimpleIcon size={28} className='' />, url: contact_mail }
+                  ].map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded bg-neutral-200 dark:bg-neutral-900  hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
                 </div>
-              </div> */}
-              <div className='flex w-full items-center justify-between'>
-                <div>&copy; 2025 Vivek's Portfolio. Built with love by vivek. </div>
-                <div>
-                  <ul className='flex flex-row space-x-2'>
-                    <a target='_blank' href={linkedin_profile}><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <LinkedinLogoIcon size={24} /> </div> </li></a>
-                    <a target='_blank' href={github_profile}><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <GithubLogoIcon size={24} /> </div> </li></a>
-                    <a target='_blank' href={contact_mail}><li> <div className='p-2 aspect-square flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 rounded'> <EnvelopeSimpleIcon size={24} /> </div> </li></a>
-                  </ul>
-                </div>
+              </div>
+            </div>
+
+            {/* Bottom section */}
+            <div className="pt-4">
+              <div className="flex flex-col md:flex-row justify-between items-center text-sm text-neutral-500 dark:text-neutral-400">
+                <p className="mb-2 md:mb-0">
+                  &copy; {new Date().getFullYear()} Vivek's Portfolio. Built with love by
+                </p>
+                {/* <div className="flex space-x-4">
+                  <a href="#" className="hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors">
+                    Privacy
+                  </a>
+                  <a href="#" className="hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors">
+                    Terms
+                  </a>
+                </div> */}
               </div>
             </div>
           </div>
         </footer>
       </main>
-
     </div>
   );
 };

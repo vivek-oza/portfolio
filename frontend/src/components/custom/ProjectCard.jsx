@@ -48,7 +48,7 @@ export default function ProjectCard({
     return (
         <div
             ref={cardRef}
-            className="group relative overflow-hidden bg-white dark:bg-neutral-900 w-full transition-all duration-300 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+            className="group relative overflow-hidden bg-white dark:bg-neutral-900 w-full transition-all duration-300 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
             onClick={toggleExpand}
         >
             {/* Corner borders - only show on hover */}
