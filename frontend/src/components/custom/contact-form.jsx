@@ -168,7 +168,7 @@ export default function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-2 justify-between h-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col space-y-2 justify-between h-full">
         <FormField
           control={form.control}
           name="name"
